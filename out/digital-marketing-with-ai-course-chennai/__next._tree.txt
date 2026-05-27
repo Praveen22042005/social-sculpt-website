@@ -1,0 +1,6 @@
+:HL["/_next/static/chunks/1cb40810f47ee16c.css","style"]
+:HL["/_next/static/chunks/8df4d0347f8da7a4.css","style"]
+:HL["/_next/static/chunks/290577c2c455f3ba.css","style"]
+:HL["/_next/static/media/c825fd02acae0153-s.p.1692d83b.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css","style",{"crossOrigin":"anonymous"}]
+0:{"buildId":"L7Ljjb5w9lArUI1neV-Qy","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"digital-marketing-with-ai-course-chennai","paramType":null,"paramKey":"digital-marketing-with-ai-course-chennai","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
