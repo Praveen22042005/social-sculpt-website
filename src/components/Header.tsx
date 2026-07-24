@@ -10,7 +10,7 @@ export default function Header() {
   ];
 
   const OurIniatives = [
-    { title: "Academy", link: "/academy" },
+    { title: "Academy", link: "https://academy.socialsculpt.in/" },
     // { title: "Podcast", link: "/podcast" },
     { title: "Digital marketing with ai ", link: "/digital-marketing-with-ai-course-chennai" },
     { title: "personal branding with ai ", link: "/digital-marketing-with-ai-course-chennai" },

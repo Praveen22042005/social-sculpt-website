@@ -1,5 +1,4 @@
 'use client'
-import Header from '@/src/components/Header';
 import ThankYouModal from '@/src/components/ThankYouModel';
 import React, { useState, useRef } from 'react'
 import { motion, AnimatePresence, MotionConfig } from 'framer-motion';
@@ -28,6 +27,37 @@ const chipPop = {
 };
 
 const btnSpring = { type: 'spring' as const, stiffness: 400, damping: 17 };
+
+const brandLogosRow1 = [
+    "/Clients/client-logo-2.png",
+    "/Clients/client-logo-3.png",
+    "/Clients/client-logo-10.png",
+    "/Clients/client-logo-6.jpg",
+    "/Clients/client-logo-7.png",
+    "/Clients/client-logo-16.png",
+    "/Clients/client-logo-9.png",
+    "/Clients/client-logo-13.avif",
+    "/Clients/client-logo-18.png",
+    "/Clients/client-logo-12.png",
+    "/Clients/client-logo-13.png",
+    "/Clients/client-logo-20.webp",
+    "/Clients/EB5.jpg",
+];
+
+const brandLogosRow2 = [
+    "/Clients/client-logo-21.svg",
+    "/Clients/client-logo-17.png",
+    "/Clients/client-logo-22.avif",
+    "/Clients/client-logo-14.jpg",
+    "/Clients/client-logo-16.svg",
+    "/Clients/client-logo-8.png",
+    "/Clients/client-logo-11.png",
+    "/Clients/client-logo-14.png",
+    "/Clients/client-logo-4.png",
+    "/Clients/client-logo-1.png",
+    "/Clients/client-logo-19.webp",
+    "/Clients/IIMShillong.png",
+];
 
 
 type Module = {
@@ -234,7 +264,36 @@ const page = () => {
                 </nav>
             </section> */}
 
-            <Header />
+            <header className="anav-wrap">
+                <nav className="navbar navbar-expand-lg anav">
+                    <div className="container">
+                        <a className="navbar-brand" href="/"><img src="/academy-ss.jpg" alt="Social Sculpt Academy" className='anav-logo' /></a>
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#academyNav" aria-controls="academyNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="academyNav">
+                            <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#about">About</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#methodology">Methodology</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#program">Curriculum</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#internship">Internship</a>
+                                </li>
+                            </ul>
+                            <a href="#contact-us" className="anav-cta">
+                                Apply Now
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </header>
 
             <div className='overflow-hidden'>
                 <div className='academy-parent'>
@@ -667,6 +726,22 @@ const page = () => {
                         </div>
                     </section>
 
+                    <section className="academy-become section-padding-bottom position-relative common-backline">
+                        <div className="container">
+                            <h2 className="common-heading text-center">What We Help You Become</h2>
+                            <p className='text-center important-text'>Not just certified. Not just course completed. <br className='break-tag' />But someone who:</p>
+
+                            <div className="academy-become-grid">
+                                <div className="academy-become-item"><span className="academy-tcheck"><i className="fa-solid fa-arrow-right"></i></span>Understands how people think</div>
+                                <div className="academy-become-item"><span className="academy-tcheck"><i className="fa-solid fa-arrow-right"></i></span>Knows how brands grow</div>
+                                <div className="academy-become-item"><span className="academy-tcheck"><i className="fa-solid fa-arrow-right"></i></span>Can build systems, not just posts</div>
+                                <div className="academy-become-item"><span className="academy-tcheck"><i className="fa-solid fa-arrow-right"></i></span>Uses AI intelligently</div>
+                                <div className="academy-become-item"><span className="academy-tcheck"><i className="fa-solid fa-arrow-right"></i></span>Can turn ideas into income</div>
+                                <div className="academy-become-item"><span className="academy-tcheck"><i className="fa-solid fa-arrow-right"></i></span>Can build authority through personal branding</div>
+                            </div>
+                        </div>
+                    </section>
+
                     <section className="Syllabus section-padding-bottom position-relative common-backline">
                         <div className="container">
                             <div className='mb-5'>
@@ -704,9 +779,10 @@ const page = () => {
                                                     initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
                                                     transition={{ duration: 0.32, ease: 'easeOut' }}>
 
-                                                <p>Understand how marketing actually works in today’s attention-driven, AI-powered world.</p>
-                                                {/* <p><span>• Customer Insights:</span> Understand buyer personas.</p>
-                      <p><span>• Media Strategy:</span> Use the PESO model for brand visibility.</p> */}
+                                                <p><span>• Marketing Evolution & Vibe Marketing:</span> Understand how marketing shifted from product to culture-driven strategies.</p>
+                                                <p><span>• Consumer Psychology:</span> Learn cognitive biases and emotional triggers behind buying decisions.</p>
+                                                <p><span>• Attention Economy & ZMOT:</span> Understand how consumers discover and research before purchasing.</p>
+                                                <p><span>• Core Frameworks:</span> Apply AIDA, funnels, and real-world campaign analysis.</p>
                                             </motion.div>
                                             )}
                                         </AnimatePresence>
@@ -744,7 +820,10 @@ const page = () => {
 
                                                 {/* <p><span>• Core Marketing Principles:</span> It's provocative, memorable, speaks directly to ambition, and positions the course as insider knowledge - exactly what a premium academy should feel like.</p> */}
                                                 {/* <p><span>• Customer Insights:</span> Understand buyer personas.</p> */}
-                                                <p>Learn how to build brands people connect <br className='break-tag' />with, trust, and remember.</p>
+                                                <p><span>• What a Brand Really Is:</span> Learn identity, perception, and brand promise.</p>
+                                                <p><span>• Brand Archetypes:</span> Use archetypes to build emotional connection.</p>
+                                                <p><span>• Positioning Strategy:</span> Create clear differentiation in crowded markets.</p>
+                                                <p><span>• Brand Storytelling:</span> Build narratives using Golden Circle and StoryBrand.</p>
                                             </motion.div>
                                             )}
                                         </AnimatePresence>
@@ -787,7 +866,10 @@ const page = () => {
 
                                                     {/* <p><span>• Core Marketing Principles:</span> It's provocative, memorable, speaks directly to ambition, and positions the course as insider knowledge - exactly what a premium academy should feel like.</p> */}
                                                     {/* <p><span>• Customer Insights:</span> Understand buyer personas.</p> */}
-                                                    <p>Create high-impact content using structured systems and AI-powered workflows.</p>
+                                                    <p><span>• Content Strategy Systems:</span> Build scalable content frameworks.</p>
+                                                    <p><span>• AI-Powered Creation:</span> Use AI tools for content generation and workflows.</p>
+                                                    <p><span>• Platform Content Formats:</span> Learn what works on different platforms.</p>
+                                                    <p><span>• Consistency Engine:</span> Build systems for regular content output.</p>
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>
@@ -826,8 +908,10 @@ const page = () => {
 
                                                     {/* <p><span>• Core Marketing Principles:</span> It's provocative, memorable, speaks directly to ambition, and positions the course as insider knowledge - exactly what a premium academy should feel like.</p> */}
                                                     {/* <p><span>• Customer Insights:</span> Understand buyer personas.</p> */}
-                                                    <p>Learn how to scale reach, build funnels, and drive measurable results.
-                                                    </p>
+                                                    <p><span>• Algorithm Mastery:</span> Understand platform algorithms.</p>
+                                                    <p><span>• Content Distribution:</span> Maximize reach through engagement signals.</p>
+                                                    <p><span>• Influencer Marketing:</span> Plan and execute influencer campaigns.</p>
+                                                    <p><span>• Community Building:</span> Build loyal owned audiences.</p>
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>
@@ -872,7 +956,10 @@ const page = () => {
 
                                                     {/* <p><span>• Core Marketing Principles:</span> It's provocative, memorable, speaks directly to ambition, and positions the course as insider knowledge - exactly what a premium academy should feel like.</p> */}
                                                     {/* <p><span>• Customer Insights:</span> Understand buyer personas.</p> */}
-                                                    <p>Deep dive into SEO, paid ads, analytics, and full-funnel execution.</p>
+                                                    <p><span>• Social Media Growth Systems:</span> Build scalable growth strategies.</p>
+                                                    <p><span>• SEO & LLM Optimization:</span> Learn search and AI-driven discovery.</p>
+                                                    <p><span>• Performance Marketing:</span> Run paid ads with ROI focus.</p>
+                                                    <p><span>• Full-Funnel Strategy:</span> Build end-to-end marketing funnels.</p>
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>
@@ -910,7 +997,10 @@ const page = () => {
 
                                                     {/* <p><span>• Core Marketing Principles:</span> It's provocative, memorable, speaks directly to ambition, and positions the course as insider knowledge - exactly what a premium academy should feel like.</p> */}
                                                     {/* <p><span>• Customer Insights:</span> Understand buyer personas.</p> */}
-                                                    <p>Build authority, grow on LinkedIn & Instagram, and create inbound opportunities.</p>
+                                                    <p><span>• Personal Brand Positioning:</span> Define niche and positioning.</p>
+                                                    <p><span>• LinkedIn Authority Building:</span> Build professional presence.</p>
+                                                    <p><span>• Instagram Growth:</span> Create and grow with content.</p>
+                                                    <p><span>• AI Content Systems & Monetization:</span> Scale and monetize your brand.</p>
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>
@@ -971,7 +1061,7 @@ const page = () => {
                         </div>
                     </section>
 
-                    <section className="academy-internship-section section-padding-bottom position-relative common-backline">
+                    <section className="academy-internship-section section-padding-bottom position-relative common-backline" id="internship">
                         <div className="container">
                             <div className="academy-internship-inner">
 
@@ -1141,6 +1231,33 @@ const page = () => {
                         </div>
                     </section>
 
+                    <section className="academy-brands section-padding-bottom position-relative common-backline">
+                        <div className="container">
+                            <h2 className="common-heading text-center">Brands We Work With. <span className="academy-brands-accent">Results That Speak</span></h2>
+                            <p className="text-center important-text">Social Sculpt has worked with real brands across industries - from startups <br className='break-tag' />to established businesses. This is the experience we bring into the classroom.</p>
+                        </div>
+
+                        <div className="mt-5 academy-brand-marquee">
+                            <Marquee speed={40} gradient={false} pauseOnHover={true} autoFill={true}>
+                                {brandLogosRow1.map((logo) => (
+                                    <div className="academy-brand-tile" key={logo}>
+                                        <img src={logo} alt="Client brand logo" />
+                                    </div>
+                                ))}
+                            </Marquee>
+                        </div>
+
+                        <div className="mt-4 academy-brand-marquee">
+                            <Marquee speed={40} direction="right" gradient={false} pauseOnHover={true} autoFill={true}>
+                                {brandLogosRow2.map((logo) => (
+                                    <div className="academy-brand-tile" key={logo}>
+                                        <img src={logo} alt="Client brand logo" />
+                                    </div>
+                                ))}
+                            </Marquee>
+                        </div>
+                    </section>
+
                     <section className="academy-diff section-padding-bottom position-relative common-backline">
                         <div className="container">
 
@@ -1161,13 +1278,15 @@ const page = () => {
                                     <div className="academy-diff-others">
                                         <div className="academy-diff-others-tag">Others</div>
                                         <p className="academy-diff-others-text">Teach tools.</p>
+                                        <p className="academy-diff-sub">Surface-level training on platforms and features.</p>
                                     </div>
                                     <div className="academy-diff-arrow">
                                         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                                     </div>
                                     <div className="academy-diff-we">
                                         <div className="academy-diff-we-tag">We</div>
-                                        <p className="academy-diff-we-text">Build how you think</p>
+                                        <p className="academy-diff-we-text">Build how you think.</p>
+                                        <p className="academy-diff-sub academy-diff-sub-we">Train your judgement, not just your skillset.</p>
                                     </div>
                                 </div>
 
@@ -1175,6 +1294,7 @@ const page = () => {
                                     <div className="academy-diff-others">
                                         <div className="academy-diff-others-tag">Others</div>
                                         <p className="academy-diff-others-text">Teach tactics.</p>
+                                        <p className="academy-diff-sub">Quick hacks that stop working in months.</p>
                                     </div>
                                     <div className="academy-diff-arrow">
                                         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
@@ -1182,6 +1302,7 @@ const page = () => {
                                     <div className="academy-diff-we">
                                         <div className="academy-diff-we-tag">We</div>
                                         <p className="academy-diff-we-text">Teach strategy.</p>
+                                        <p className="academy-diff-sub academy-diff-sub-we">Frameworks that compound over your career.</p>
                                     </div>
                                 </div>
 
@@ -1189,6 +1310,7 @@ const page = () => {
                                     <div className="academy-diff-others">
                                         <div className="academy-diff-others-tag">Others</div>
                                         <p className="academy-diff-others-text">Teach marketing.</p>
+                                        <p className="academy-diff-sub">Generic theory disconnected from outcomes.</p>
                                     </div>
                                     <div className="academy-diff-arrow">
                                         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
@@ -1196,6 +1318,39 @@ const page = () => {
                                     <div className="academy-diff-we">
                                         <div className="academy-diff-we-tag">We</div>
                                         <p className="academy-diff-we-text">Teach how to create influence.</p>
+                                        <p className="academy-diff-sub academy-diff-sub-we">Build a brand, an audience, and real authority.</p>
+                                    </div>
+                                </div>
+
+                                <div className="academy-diff-row">
+                                    <div className="academy-diff-others">
+                                        <div className="academy-diff-others-tag">Others</div>
+                                        <p className="academy-diff-others-text">Information overload.</p>
+                                        <p className="academy-diff-sub">Hours of videos with no real execution.</p>
+                                    </div>
+                                    <div className="academy-diff-arrow">
+                                        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                                    </div>
+                                    <div className="academy-diff-we">
+                                        <div className="academy-diff-we-tag">We</div>
+                                        <p className="academy-diff-we-text">Execution-first learning.</p>
+                                        <p className="academy-diff-sub academy-diff-sub-we">Every week you ship real, portfolio-grade work.</p>
+                                    </div>
+                                </div>
+
+                                <div className="academy-diff-row">
+                                    <div className="academy-diff-others">
+                                        <div className="academy-diff-others-tag">Others</div>
+                                        <p className="academy-diff-others-text">One-size-fits-all syllabus.</p>
+                                        <p className="academy-diff-sub">Not built for how modern marketers work.</p>
+                                    </div>
+                                    <div className="academy-diff-arrow">
+                                        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                                    </div>
+                                    <div className="academy-diff-we">
+                                        <div className="academy-diff-we-tag">We</div>
+                                        <p className="academy-diff-we-text">Designed around real workflows.</p>
+                                        <p className="academy-diff-sub academy-diff-sub-we">Modeled on how top marketers actually operate.</p>
                                     </div>
                                 </div>
 
@@ -1396,6 +1551,15 @@ const page = () => {
 
                 </div>
             </div>
+              <a
+                  href="https://wa.me/917550039872?text=Hi%2C%20I%E2%80%99m%20interested%20in%20the%20Social%20Sculpt%20Academy%20program.%20Can%20you%20share%20more%20details%3F"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="academy-wa-float"
+                  aria-label="Chat with us on WhatsApp"
+              >
+                  <i className="fa-brands fa-whatsapp"></i>
+              </a>
               <ThankYouModal open={showModal} setOpen={setShowModal} />
         </div>
         </MotionConfig>
