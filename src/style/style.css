@@ -12496,3 +12496,519 @@ input[type="number"] {
     justify-content: center;
     align-items: center;
 }
+
+/* ===== Academy hero (EMC-style split layout) ===== */
+
+.academy-hero-wrap {
+    align-items: flex-start;
+    min-height: auto;
+    padding: 44px 0 64px;
+}
+
+.ahero-bg-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(600px 420px at 85% 15%, rgba(42, 17, 241, 0.07), transparent 60%),
+        radial-gradient(520px 380px at 8% 85%, rgba(254, 226, 18, 0.12), transparent 60%);
+}
+
+.ahero-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 48px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+}
+
+/* Badge with glow */
+.ahero-badge-wrap {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.ahero-badge-glow {
+    position: absolute;
+    inset: -6px -10px;
+    background: rgba(42, 17, 241, 0.16);
+    filter: blur(22px);
+    border-radius: 100px;
+    transform: translateY(8px);
+    z-index: 0;
+}
+
+.ahero-badge {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 16px 6px 6px;
+    border-radius: 100px;
+    border: 1px solid rgba(42, 17, 241, 0.25);
+    background: linear-gradient(90deg, #ffffff, #f3f1ff, #ffffff);
+    box-shadow: 0 10px 30px rgba(42, 17, 241, 0.16);
+}
+
+.ahero-badge-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), #1a0a9e);
+    box-shadow: 0 4px 12px rgba(42, 17, 241, 0.35);
+    flex-shrink: 0;
+}
+
+.ahero-badge-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--yellow);
+    stroke: none;
+}
+
+.ahero-badge-text {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--black);
+}
+
+.ahero-badge-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--blue);
+    border-left: 1px solid rgba(42, 17, 241, 0.2);
+    padding-left: 12px;
+}
+
+/* Headline */
+.ahero-title {
+    font-weight: 800;
+    font-size: clamp(2rem, 3.5vw, 3.3rem);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: var(--black);
+    margin-bottom: 16px;
+}
+
+.ahero-title-chip {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--black);
+    padding: 0 12px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(254, 226, 18, 0.45);
+}
+
+.ahero-word {
+    display: inline-block;
+    white-space: pre;
+}
+
+.academy-timeline {
+    position: relative;
+}
+
+/* Timeline spine removed — hide any legacy line */
+.academy-spine,
+.academy-phase-connector {
+    display: none;
+}
+
+.academy-pcard,
+.academy-week-tag,
+.academy-phase-two-title,
+.academy-dot-wrap {
+    position: relative;
+    z-index: 1;
+}
+
+/* Visible strike-out on the "Others" comparisons */
+.academy-diff-others-text {
+    color: #4a4a4a;
+    text-decoration: line-through;
+    text-decoration-color: #d64545;
+    text-decoration-thickness: 2.5px;
+}
+
+.ahero-desc {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+/* Stats strip card */
+.ahero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.ahero-stat {
+    padding: 10px 16px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.ahero-stat:nth-child(3n) {
+    border-right: none;
+}
+
+.ahero-stat:nth-child(n+4) {
+    border-bottom: none;
+}
+
+.ahero-stat-top {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--black);
+    margin-bottom: 2px;
+}
+
+.ahero-stat-sub {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #646464;
+    margin-bottom: 0;
+}
+
+/* CTAs */
+.ahero-ctas {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.ahero-btn-blue {
+    background: linear-gradient(180deg, var(--blue), #1a0a9e);
+    color: white;
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 13px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: box-shadow 0.2s, transform 0.15s;
+}
+
+.ahero-btn-blue:hover {
+    color: white;
+    box-shadow: 0 10px 24px rgba(42, 17, 241, 0.35);
+    transform: translateY(-2px);
+}
+
+.ahero-btn-arrow {
+    transition: transform 0.2s;
+}
+
+.ahero-btn-blue:hover .ahero-btn-arrow {
+    transform: translateX(4px);
+}
+
+/* Form card */
+.ahero-form-card {
+    background: #f8f8f8;
+    border: 1px solid #ececec;
+    border-radius: 16px;
+    padding: 22px 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+}
+
+.ahero-form-card .custom-input {
+    background: transparent;
+    font-size: 15px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+}
+
+.ahero-form-card .custom-input::placeholder {
+    font-size: 14px;
+}
+
+.ahero-form-card textarea.custom-input {
+    min-height: 64px;
+    resize: none;
+}
+
+.ahero-form-card .common-btn-academy {
+    padding: 12px 36px;
+}
+
+.ahero-form-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--black);
+    margin-bottom: 14px;
+}
+
+.ahero-form-note {
+    font-size: 0.78rem;
+    text-align: center;
+    color: #646464;
+    margin: 8px 0 0;
+}
+
+/* CTAs sized to hero scale */
+.ahero-ctas .academy-hero-btn-primary {
+    padding: 13px 30px;
+    font-size: 0.92rem;
+}
+
+/* Pills under form */
+.ahero-pills {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.ahero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--black);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 14px;
+}
+
+/* Interactive polish */
+.ahero-stat {
+    transition: background 0.2s;
+}
+
+.ahero-stat:hover {
+    background: var(--blue-light);
+}
+
+.academy-tcard {
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.academy-tcard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+.module-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.module-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.academy-internship-perk {
+    transition: transform 0.2s;
+}
+
+.academy-internship-perk:hover {
+    transform: translateX(6px);
+}
+
+.academy-diff-pillar {
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.academy-diff-pillar:hover {
+    transform: translateY(-5px);
+}
+
+/* Logo marquees — standardized strip sizing */
+.academy-logo-marquee img {
+    height: 32px;
+    width: auto;
+    max-width: 110px;
+    object-fit: contain;
+    margin: 0 32px;
+    border-radius: 6px;
+    transition: transform 0.25s;
+}
+
+.academy-logo-marquee img:hover {
+    transform: scale(1.1);
+}
+
+/* Consistent fluid section headers (academy scope) */
+.academy-parent .common-heading {
+    font-size: clamp(1.9rem, 3.4vw, 3.1rem);
+    line-height: 1.2 !important;
+    letter-spacing: -1px;
+    text-wrap: balance;
+}
+
+.academy-parent .academy-cta-title {
+    font-family: inherit;
+    font-size: clamp(1.9rem, 3.4vw, 3.1rem);
+    line-height: 1.2;
+    letter-spacing: -1px;
+    text-wrap: balance;
+}
+
+/* Floating deco (code-rendered, lottie-like) */
+.ahero-floaties {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.ahero-floaty {
+    position: absolute;
+}
+
+.ahero-floaty-spark1 {
+    top: 15%;
+    left: 46%;
+    width: 26px;
+    fill: var(--yellow);
+    filter: drop-shadow(0 2px 6px rgba(254, 226, 18, 0.55));
+}
+
+.ahero-floaty-spark2 {
+    top: 60%;
+    left: 3%;
+    width: 17px;
+    fill: var(--yellow);
+    opacity: 0.85;
+}
+
+.ahero-floaty-ring {
+    top: 25%;
+    left: 2.5%;
+    width: 22px;
+    height: 22px;
+    border: 3px solid var(--blue);
+    border-radius: 50%;
+    opacity: 0.35;
+}
+
+.ahero-floaty-dot {
+    bottom: 16%;
+    left: 48%;
+    width: 10px;
+    height: 10px;
+    background: var(--blue);
+    border-radius: 50%;
+    opacity: 0.3;
+}
+
+.ahero-floaty-plus {
+    top: 7%;
+    right: 36%;
+    width: 20px;
+    fill: rgba(42, 17, 241, 0.3);
+}
+
+/* Hand-drawn underline draw */
+.ahero-underline-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.ahero-underline {
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 10px;
+    overflow: visible;
+}
+
+.ahero-underline path {
+    stroke: var(--yellow);
+    stroke-width: 5;
+    stroke-linecap: round;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ahero-floaty {
+        display: none;
+    }
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .ahero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .academy-hero-wrap {
+        min-height: auto;
+        padding: 36px 0 64px;
+    }
+
+    .ahero-title {
+        letter-spacing: -1px;
+    }
+
+    .ahero-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ahero-stat:nth-child(3n) {
+        border-right: 1px solid var(--border);
+    }
+
+    .ahero-stat:nth-child(2n) {
+        border-right: none;
+    }
+
+    .ahero-stat:nth-child(n+4) {
+        border-bottom: 1px solid var(--border);
+    }
+
+    .ahero-stat:nth-child(n+5) {
+        border-bottom: none;
+    }
+}
+
+@media (max-width: 575px) {
+    .ahero-badge-live {
+        display: none;
+    }
+
+    .ahero-ctas a {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .academy-logo-marquee img {
+        height: 26px;
+        max-width: 90px;
+        margin: 0 20px;
+    }
+}
+
+@media (max-width: 991px) {
+    .ahero-floaties {
+        display: none;
+    }
+}

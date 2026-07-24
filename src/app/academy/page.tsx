@@ -1,9 +1,33 @@
 'use client'
 import Header from '@/src/components/Header';
 import ThankYouModal from '@/src/components/ThankYouModel';
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
+import { motion, AnimatePresence, MotionConfig } from 'framer-motion';
+import Marquee from 'react-fast-marquee';
 export const dynamic = "force-static";
 // import emailjs from "@emailjs/browser";
+
+const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' as const } },
+};
+
+const stagger = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.12 } },
+};
+
+const wordUp = {
+    hidden: { opacity: 0, y: 26 },
+    show: { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 220, damping: 22 } },
+};
+
+const chipPop = {
+    hidden: { opacity: 0, scale: 0.4, rotate: -14 },
+    show: { opacity: 1, scale: 1, rotate: -2, transition: { type: 'spring' as const, stiffness: 260, damping: 13 } },
+};
+
+const btnSpring = { type: 'spring' as const, stiffness: 400, damping: 17 };
 
 
 type Module = {
@@ -175,6 +199,7 @@ const page = () => {
     };
 
     return (
+        <MotionConfig reducedMotion="user">
         <div className=''>
 
 
@@ -214,34 +239,169 @@ const page = () => {
             <div className='overflow-hidden'>
                 <div className='academy-parent'>
                     <section className="academy-hero-wrap">
+                        <motion.div
+                            className="ahero-bg-glow"
+                            animate={{ x: [0, 40, 0], y: [0, -25, 0] }}
+                            transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+                        ></motion.div>
+
+                        <div className="ahero-floaties" aria-hidden="true">
+                            <motion.svg className="ahero-floaty ahero-floaty-spark1" viewBox="0 0 24 24"
+                                animate={{ y: [0, -14, 0], rotate: [0, 25, 0] }}
+                                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}>
+                                <path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" />
+                            </motion.svg>
+                            <motion.svg className="ahero-floaty ahero-floaty-spark2" viewBox="0 0 24 24"
+                                animate={{ y: [0, 10, 0], rotate: [0, -35, 0], scale: [1, 0.75, 1] }}
+                                transition={{ duration: 7.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}>
+                                <path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" />
+                            </motion.svg>
+                            <motion.span className="ahero-floaty ahero-floaty-ring"
+                                animate={{ y: [0, -18, 0], x: [0, 8, 0] }}
+                                transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}></motion.span>
+                            <motion.span className="ahero-floaty ahero-floaty-dot"
+                                animate={{ y: [0, 12, 0] }}
+                                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 2 }}></motion.span>
+                            <motion.svg className="ahero-floaty ahero-floaty-plus" viewBox="0 0 24 24"
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}>
+                                <path d="M11 2h2v9h9v2h-9v9h-2v-9H2v-2h9z" />
+                            </motion.svg>
+                        </div>
                         <div className="container">
-                            <div className="academy-hero-inner m-0">
+                            <div className="ahero-grid">
 
-                                <div className="academy-hero-badge">
-                                    <span className="academy-hero-badge-dot"></span>
-                                    <span className="academy-hero-badge-text">Social Sculpt Academy</span>
-                                </div>
+                                <motion.div className="ahero-left" variants={stagger} initial="hidden" animate="show">
 
-                                <h1 className="academy-hero-title ">
-                                    Where Marketers Are Built <br className='break-tag' />
-                                    Not Taught <span className="academy-hero-title-yellow"></span>
-                                </h1>
+                                    <motion.div className="ahero-badge-wrap" variants={fadeUp}>
+                                        <div className="ahero-badge-glow"></div>
+                                        <div className="ahero-badge">
+                                            <span className="ahero-badge-icon">
+                                                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" /></svg>
+                                            </span>
+                                            <span className="ahero-badge-text">Social Sculpt Academy</span>
+                                            <span className="ahero-badge-live">
+                                                <span className="academy-hero-badge-dot"></span>
+                                                Live Cohort
+                                            </span>
+                                        </div>
+                                    </motion.div>
 
-                                <div className='my-5'>
-                                    <p className="academy-hero-desc">
+                                    <motion.h1 className="ahero-title" variants={stagger}>
+                                        {['Where', 'Marketers', 'Are'].map((w) => (
+                                            <motion.span key={w} className="ahero-word" variants={wordUp}>{w} </motion.span>
+                                        ))}
+                                        <motion.span className="ahero-title-chip" variants={chipPop}>Built</motion.span>
+                                        <br className='break-tag' />
+                                        <motion.span className="ahero-word" variants={wordUp}>Not Taught</motion.span>
+                                    </motion.h1>
+
+                                    <motion.p className="ahero-desc" variants={fadeUp}>
                                         Master Vibe Marketing, AI systems, and real-world execution <br className='break-tag' />and become impossible to ignore in the digital economy
-                                    </p>
-                                </div>
+                                    </motion.p>
 
-                                <div className="academy-hero-ctas">
-                                    <a href="#contact-us" className="academy-hero-btn-primary">
-                                        Speak with us
-                                        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                                    </a>
-                                    {/* <a href="#brochure" className="academy-hero-btn-secondary">
-                  <svg viewBox="0 0 24 24"><path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" /></svg>
-                  Download Brochure
-                </a> */}
+                                    <motion.div className="ahero-stats" variants={fadeUp}>
+                                        <div className="ahero-stat">
+                                            <p className="ahero-stat-top">8-Week</p>
+                                            <p className="ahero-stat-sub">Live Program</p>
+                                        </div>
+                                        <div className="ahero-stat">
+                                            <p className="ahero-stat-top">AI-Powered</p>
+                                            <p className="ahero-stat-sub">Vibe Marketing</p>
+                                        </div>
+                                        <div className="ahero-stat">
+                                            <p className="ahero-stat-top">2 Execution</p>
+                                            <p className="ahero-stat-sub">Tracks</p>
+                                        </div>
+                                        <div className="ahero-stat">
+                                            <p className="ahero-stat-top">Portfolio</p>
+                                            <p className="ahero-stat-sub">First Learning</p>
+                                        </div>
+                                        <div className="ahero-stat">
+                                            <p className="ahero-stat-top">Paid</p>
+                                            <p className="ahero-stat-sub">Internship</p>
+                                        </div>
+                                        <div className="ahero-stat">
+                                            <p className="ahero-stat-top">Limited</p>
+                                            <p className="ahero-stat-sub">Seats Per Batch</p>
+                                        </div>
+                                    </motion.div>
+
+                                    <motion.div className="ahero-ctas" variants={fadeUp}>
+                                        <motion.a href="#contact-us" className="academy-hero-btn-primary"
+                                            whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }} transition={btnSpring}>
+                                            Speak with us
+                                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                                        </motion.a>
+                                        <motion.a href="#program" className="ahero-btn-blue"
+                                            whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }} transition={btnSpring}>
+                                            Explore Program
+                                            <span className="ahero-btn-arrow">→</span>
+                                        </motion.a>
+                                    </motion.div>
+
+                                </motion.div>
+
+                                <div className="ahero-right">
+                                    <motion.div
+                                        className="ahero-form-card"
+                                        initial={{ opacity: 0, scale: 0.92 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ duration: 0.5, delay: 0.35, ease: 'easeOut' }}
+                                    >
+                                        <h3 className="ahero-form-title">Want to know more?</h3>
+
+                                        <form onSubmit={handleSubmit}>
+
+                                            <div className="mb-3">
+                                                <input type="text" className="custom-input" name="name" value={formData.name}
+                                                    onChange={handleChange}
+                                                    placeholder="Enter your name" />
+                                                {errors.name && <small className="text-danger">{errors.name}</small>}
+                                            </div>
+
+                                            <div className="mb-3">
+                                                <input type="text" name="email"
+                                                    value={formData.email}
+                                                    onChange={handleChange}
+                                                    className="custom-input"
+                                                    placeholder="Enter your email address" />
+                                                {errors.email && <small className="text-danger">{errors.email}</small>}
+                                            </div>
+
+                                            <div className="mb-3">
+                                                <input type="number" className="custom-input" name="phonenumber"
+                                                    value={formData.phonenumber}
+                                                    onChange={handleChange}
+                                                    placeholder="Enter your phone number" />
+                                                {errors.phonenumber && <small className="text-danger">{errors.phonenumber}</small>}
+                                            </div>
+
+                                            <div className="mb-3">
+                                                <textarea className="custom-input" name="message" placeholder="Why you interested in this course" value={formData.message}
+                                                    onChange={handleChange}></textarea>
+                                                {errors.message && <small className="text-danger">{errors.message}</small>}
+                                            </div>
+
+                                            <motion.button type="submit" className='common-btn-academy w-100 text-center'
+                                                whileHover={{ scale: 1.02, y: -2 }} whileTap={{ scale: 0.97 }} transition={btnSpring}>
+                                                <span>{loading ? "Enrolling..." : "Enroll Now "}</span>
+                                            </motion.button>
+                                            <p className='ahero-form-note'>(Batch date will be announced soon)</p>
+
+                                        </form>
+                                    </motion.div>
+
+                                    <motion.div
+                                        className="ahero-pills"
+                                        initial={{ opacity: 0, y: 12 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.45, delay: 0.7 }}
+                                    >
+                                        <span className="ahero-pill"><span className="academy-hero-badge-dot"></span>Limited seats</span>
+                                        <span className="ahero-pill"><span className="academy-hero-badge-dot"></span>High expectations</span>
+                                        <span className="ahero-pill"><span className="academy-hero-badge-dot"></span>Real transformation</span>
+                                    </motion.div>
                                 </div>
 
                             </div>
@@ -261,7 +421,15 @@ const page = () => {
                                 {/* </div> */}
 
                                 <h2 className="common-heading">
-                                    Marketing Has Already Changed
+                                    Marketing Has Already{' '}
+                                    <span className="ahero-underline-wrap">
+                                        Changed
+                                        <svg className="ahero-underline" viewBox="0 0 220 12" preserveAspectRatio="none" aria-hidden="true">
+                                            <motion.path d="M3 9 C 60 3, 160 3, 217 7" fill="none"
+                                                initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+                                                transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }} />
+                                        </svg>
+                                    </span>
                                 </h2>
 
                             </div>
@@ -356,7 +524,7 @@ const page = () => {
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-lg-4">
-                                            <div className="choose-your-path-card" >
+                                            <div className="choose-your-path-card">
                                                 <div className="image-wrap academy-wrap">
                                                     <img src="./academic-hme.png" alt="About Social Sculpt" className="img-fluid" />
                                                 </div>
@@ -371,7 +539,7 @@ const page = () => {
                                             <div className="choose-your-path-card mt-lg-0 mt-4">
                                                 <div className="image-wrap academy-wrap">
                                                     <img src="./academic-hme.png" alt="About Social Sculpt" className="img-fluid" />
-                                                </div> 
+                                                </div>
                                                 <div className="content-card academy">
                                                     <h3>AI as a System, Not a Tool</h3>
                                                     <p>You won’t just “learn AI tools.”
@@ -411,17 +579,18 @@ const page = () => {
                             <h2 className="common-heading text-center">A System Built to Help You Earn <br className='break-tag' />Not Just Get Certified</h2>
 
                             <div className="academy-timeline">
-                                <div className="academy-spine"></div>
 
                                 <div className="academy-phase row">
                                     <div className=" academy-left-col academy-empty d-none d-md-block"></div>
                                     <div className="academy-dot-wrap col-auto">
-                                        <div className="academy-dot academy-dot-filled"></div>
+                                        <motion.div className="academy-dot academy-dot-filled"
+                                            initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true, margin: '-80px' }}
+                                            transition={{ type: 'spring', stiffness: 300, damping: 15 }}></motion.div>
                                     </div>
                                     <div className="academy-right-col">
                                         <span className="academy-week-tag">Weeks 1 – 4</span>
                                         <div className='col-lg-9 mx-auto'>
-                                            <div className="academy-pcard ">
+                                            <div className="academy-pcard">
                                                 <h3 className="academy-pcard-title">Foundation of Modern Marketing</h3>
                                                 <p className="academy-pcard-desc">Build a deep, first-principles understanding of how marketing actually works today — beyond trends, tools, and surface-level tactics.</p>
                                                 <ul className="academy-skill-list">
@@ -444,7 +613,9 @@ const page = () => {
                                         <span className="academy-week-tag academy-week-tag-light">Weeks 5 – 8</span>
                                     </div>
                                     <div className="academy-dot-wrap">
-                                        <div className="academy-dot academy-dot-filled"></div>
+                                        <motion.div className="academy-dot academy-dot-filled"
+                                            initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true, margin: '-80px' }}
+                                            transition={{ type: 'spring', stiffness: 300, damping: 15 }}></motion.div>
                                     </div>
                                     <div className="col academy-right-col btm">
                                         <span className="academy-week-tag academy-week-tag-light d-inline-flex d-md-none mb-2">Weeks 5 – 8</span>
@@ -521,20 +692,24 @@ const page = () => {
                                                 </h3>
                                             </div>
 
-                                            <span className="module-arrow">
-                                                {activeModules.includes(1)
-                                                    ? <i className="fa-solid fa-angle-down"></i>
-                                                    : <i className="fa-solid fa-angle-up"></i>}
-                                            </span>
+                                            <motion.span className="module-arrow"
+                                                animate={{ rotate: activeModules.includes(1) ? 0 : 180 }} transition={{ duration: 0.25 }}>
+                                                <i className="fa-solid fa-angle-down"></i>
+                                            </motion.span>
                                         </button>
 
-                                        {activeModules.includes(1) && (
-                                            <div className="module-contents">
+                                        <AnimatePresence initial={false}>
+                                            {activeModules.includes(1) && (
+                                                <motion.div className="module-contents" style={{ overflow: 'hidden' }}
+                                                    initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.32, ease: 'easeOut' }}>
+
                                                 <p>Understand how marketing actually works in today’s attention-driven, AI-powered world.</p>
                                                 {/* <p><span>• Customer Insights:</span> Understand buyer personas.</p>
                       <p><span>• Media Strategy:</span> Use the PESO model for brand visibility.</p> */}
-                                            </div>
-                                        )}
+                                            </motion.div>
+                                            )}
+                                        </AnimatePresence>
 
                                     </div>
                                 </div>
@@ -555,20 +730,24 @@ const page = () => {
                                                 </h3>
                                             </div>
 
-                                            <span className="module-arrow">
-                                                {activeModules.includes(1)
-                                                    ? <i className="fa-solid fa-angle-down"></i>
-                                                    : <i className="fa-solid fa-angle-up"></i>}
-                                            </span>
+                                            <motion.span className="module-arrow"
+                                                animate={{ rotate: activeModules.includes(1) ? 0 : 180 }} transition={{ duration: 0.25 }}>
+                                                <i className="fa-solid fa-angle-down"></i>
+                                            </motion.span>
                                         </button>
 
-                                        {activeModules.includes(1) && (
-                                            <div className="module-contents">
+                                        <AnimatePresence initial={false}>
+                                            {activeModules.includes(1) && (
+                                                <motion.div className="module-contents" style={{ overflow: 'hidden' }}
+                                                    initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.32, ease: 'easeOut' }}>
+
                                                 {/* <p><span>• Core Marketing Principles:</span> It's provocative, memorable, speaks directly to ambition, and positions the course as insider knowledge - exactly what a premium academy should feel like.</p> */}
                                                 {/* <p><span>• Customer Insights:</span> Understand buyer personas.</p> */}
                                                 <p>Learn how to build brands people connect <br className='break-tag' />with, trust, and remember.</p>
-                                            </div>
-                                        )}
+                                            </motion.div>
+                                            )}
+                                        </AnimatePresence>
 
                                     </div>
                                 </div>
@@ -594,20 +773,24 @@ const page = () => {
                                                     </h3>
                                                 </div>
 
-                                                <span className="module-arrow">
-                                                    {activeModules.includes(3)
-                                                        ? <i className="fa-solid fa-angle-down"></i>
-                                                        : <i className="fa-solid fa-angle-up"></i>}
-                                                </span>
+                                                <motion.span className="module-arrow"
+                                                    animate={{ rotate: activeModules.includes(3) ? 0 : 180 }} transition={{ duration: 0.25 }}>
+                                                    <i className="fa-solid fa-angle-down"></i>
+                                                </motion.span>
                                             </button>
 
+                                            <AnimatePresence initial={false}>
                                             {activeModules.includes(3) && (
-                                                <div className="module-contents">
+                                                <motion.div className="module-contents" style={{ overflow: 'hidden' }}
+                                                    initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.32, ease: 'easeOut' }}>
+
                                                     {/* <p><span>• Core Marketing Principles:</span> It's provocative, memorable, speaks directly to ambition, and positions the course as insider knowledge - exactly what a premium academy should feel like.</p> */}
                                                     {/* <p><span>• Customer Insights:</span> Understand buyer personas.</p> */}
                                                     <p>Create high-impact content using structured systems and AI-powered workflows.</p>
-                                                </div>
+                                                </motion.div>
                                             )}
+                                        </AnimatePresence>
 
                                         </div>
                                     </div>
@@ -629,21 +812,25 @@ const page = () => {
                                                     </h3>
                                                 </div>
 
-                                                <span className="module-arrow">
-                                                    {activeModules.includes(4)
-                                                        ? <i className="fa-solid fa-angle-down"></i>
-                                                        : <i className="fa-solid fa-angle-up"></i>}
-                                                </span>
+                                                <motion.span className="module-arrow"
+                                                    animate={{ rotate: activeModules.includes(4) ? 0 : 180 }} transition={{ duration: 0.25 }}>
+                                                    <i className="fa-solid fa-angle-down"></i>
+                                                </motion.span>
                                             </button>
 
+                                            <AnimatePresence initial={false}>
                                             {activeModules.includes(4) && (
-                                                <div className="module-contents">
+                                                <motion.div className="module-contents" style={{ overflow: 'hidden' }}
+                                                    initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.32, ease: 'easeOut' }}>
+
                                                     {/* <p><span>• Core Marketing Principles:</span> It's provocative, memorable, speaks directly to ambition, and positions the course as insider knowledge - exactly what a premium academy should feel like.</p> */}
                                                     {/* <p><span>• Customer Insights:</span> Understand buyer personas.</p> */}
                                                     <p>Learn how to scale reach, build funnels, and drive measurable results.
                                                     </p>
-                                                </div>
+                                                </motion.div>
                                             )}
+                                        </AnimatePresence>
 
                                         </div>
                                     </div>
@@ -671,20 +858,24 @@ const page = () => {
                                                     </h3>
                                                 </div>
 
-                                                <span className="module-arrow">
-                                                    {activeModules.includes(5)
-                                                        ? <i className="fa-solid fa-angle-down"></i>
-                                                        : <i className="fa-solid fa-angle-up"></i>}
-                                                </span>
+                                                <motion.span className="module-arrow"
+                                                    animate={{ rotate: activeModules.includes(5) ? 0 : 180 }} transition={{ duration: 0.25 }}>
+                                                    <i className="fa-solid fa-angle-down"></i>
+                                                </motion.span>
                                             </button>
 
+                                            <AnimatePresence initial={false}>
                                             {activeModules.includes(5) && (
-                                                <div className="module-contents">
+                                                <motion.div className="module-contents" style={{ overflow: 'hidden' }}
+                                                    initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.32, ease: 'easeOut' }}>
+
                                                     {/* <p><span>• Core Marketing Principles:</span> It's provocative, memorable, speaks directly to ambition, and positions the course as insider knowledge - exactly what a premium academy should feel like.</p> */}
                                                     {/* <p><span>• Customer Insights:</span> Understand buyer personas.</p> */}
                                                     <p>Deep dive into SEO, paid ads, analytics, and full-funnel execution.</p>
-                                                </div>
+                                                </motion.div>
                                             )}
+                                        </AnimatePresence>
 
                                         </div>
                                     </div>
@@ -705,20 +896,24 @@ const page = () => {
                                                     </h3>
                                                 </div>
 
-                                                <span className="module-arrow">
-                                                    {activeModules.includes(6)
-                                                        ? <i className="fa-solid fa-angle-down"></i>
-                                                        : <i className="fa-solid fa-angle-up"></i>}
-                                                </span>
+                                                <motion.span className="module-arrow"
+                                                    animate={{ rotate: activeModules.includes(6) ? 0 : 180 }} transition={{ duration: 0.25 }}>
+                                                    <i className="fa-solid fa-angle-down"></i>
+                                                </motion.span>
                                             </button>
 
+                                            <AnimatePresence initial={false}>
                                             {activeModules.includes(6) && (
-                                                <div className="module-contents">
+                                                <motion.div className="module-contents" style={{ overflow: 'hidden' }}
+                                                    initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.32, ease: 'easeOut' }}>
+
                                                     {/* <p><span>• Core Marketing Principles:</span> It's provocative, memorable, speaks directly to ambition, and positions the course as insider knowledge - exactly what a premium academy should feel like.</p> */}
                                                     {/* <p><span>• Customer Insights:</span> Understand buyer personas.</p> */}
                                                     <p>Build authority, grow on LinkedIn & Instagram, and create inbound opportunities.</p>
-                                                </div>
+                                                </motion.div>
                                             )}
+                                        </AnimatePresence>
 
                                         </div>
                                     </div>
@@ -731,146 +926,48 @@ const page = () => {
 
                     <section className='Tools-Technologies technologies-logo section-padding-bottom position-relative common-backline' id="tools">
                         <div className='container'>
-                            <h2 className='text-center text-white'>Learn the Tools Modern Marketers Actually Use</h2>
+                            <h2 className='common-heading text-center text-white'>Learn the Tools Modern Marketers Actually Use</h2>
+                        </div>
 
-                            <div className='mt-5 digital-tech-logo'>
-                                <div className='row justify-content-center'>
-                                    <div className='col-lg-2 col-4 my-auto'>
-                                        <div className=''>
-                                            <img src="/technologies/google-search.png" alt="Digital Marketing" className="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-2 col-4 my-auto'>
-                                        <div className=''>
-                                            <img src="/technologies/Google_Analytics.svg" alt="Digital Marketing" className="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-2 col-4 my-auto'>
-                                        <div className=''>
-                                            <img src="/technologies/Google-Trends.webp" alt="Digital Marketing" className="img-fluid" />
-                                        </div>
-                                    </div>
+                        <div className='mt-5 academy-logo-marquee'>
+                            <Marquee speed={45} gradient={false} pauseOnHover={true} autoFill={true}>
+                                <img src="/technologies/google-search.png" alt="Google Search" />
+                                <img src="/technologies/Google_Analytics.svg" alt="Google Analytics" />
+                                <img src="/technologies/Google-Trends.webp" alt="Google Trends" />
+                                <img src="/technologies/Meta-Ads.webp" alt="Meta Ads" />
+                                <img src="/technologies/google-ads.png" alt="Google Ads" />
+                                <img src="/technologies/studio.png" alt="Studio" />
+                                <img src="/technologies/Ahrefs.png" alt="Ahrefs" />
+                            </Marquee>
+                        </div>
 
-                                    <div className='col-lg-2 col-4 my-auto'>
-                                        <div className='mt-lg-0 mt-3'>
-                                            <img src="/technologies/Meta-Ads.webp" alt="Digital Marketing" className="img-fluid " />
-                                        </div>
-                                    </div>
+                        <div className='mt-4 academy-logo-marquee'>
+                            <Marquee speed={45} direction="right" gradient={false} pauseOnHover={true} autoFill={true}>
+                                <img src="/technologies/google-tag-manager.png" alt="Google Tag Manager" />
+                                <img src="/technologies/figma.jpg" alt="Figma" />
+                                <img src="/technologies/canva.jpeg" alt="Canva" />
+                                <img src="/technologies/semrush.png" alt="Semrush" />
+                                <img src="/technologies/perplexity.webp" alt="Perplexity" />
+                                <img src="/technologies/capcut.webp" alt="CapCut" />
+                            </Marquee>
+                        </div>
 
-                                    <div className='col-lg-2 col-4 my-auto '>
-                                        <div className='mt-lg-0 mt-3'>
-                                            <img src="/technologies/google-ads.png" alt="Digital Marketing" className="img-fluid small-image" />
-                                        </div>
-                                    </div>
-                                </div>
+                        <div className='container'>
+                            <div className='mt-5'>
+                                <h2 className='common-heading text-center text-white pt-5'>Work with AI Tools That Multiply Your Output</h2>
                             </div>
+                        </div>
 
-                            <div className='mt-5 digital-tech-logo'>
-                                <div className='row justify-content-center'>
-                                    <div className='col-lg-2 col-4 my-auto'>
-                                        <div className=''>
-                                            <img src="/technologies/studio.png" alt="Digital Marketing" className="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-2 col-4 my-auto'>
-                                        <div className=''>
-                                            <img src="/technologies/Ahrefs.png" alt="Digital Marketing" className="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-2 col-4 my-auto'>
-                                        <div className=''>
-                                            <img src="/technologies/google-tag-manager.png" alt="Digital Marketing" className="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-2 col-4 my-auto'>
-                                        <div className='mt-lg-0 mt-5'>
-                                            <img src="/technologies/figma.jpg" alt="Digital Marketing" className="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-2 col-4 my-auto'>
-                                        <div className='mt-lg-0 mt-5'>
-                                            <img src="/technologies/canva.jpeg" alt="Digital Marketing" className="img-fluid small-image " />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className='mt-5 pt-lg-4 pt-0 digital-tech-logo'>
-                                <div className='row justify-content-center align-items-center'>
-                                    <div className='col-lg-2 col-4 my-auto'>
-                                        <div className=''>
-                                            <img src="/technologies/semrush.png" alt="Digital Marketing" className="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-2 col-4 my-auto'>
-                                        <div className=''>
-                                            <img src="/technologies/perplexity.webp" alt="Digital Marketing" className="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-2 col-4 my-auto'>
-                                        <div className=''>
-                                            <img src="/technologies/capcut.webp" alt="Digital Marketing" className="img-fluid" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div className='mt-5'>
-                                    <h2 className='text-center text-white pt-5'>Work with AI Tools That Multiply Your Output</h2>
-                                </div>
-
-                                <div className='mt-5 digital-tech-logo'>
-                                    <div className='row justify-content-center'>
-                                        <div className='col-lg-2 col-4 my-auto'>
-                                            <div className=''>
-                                                <img src="/ai-technologies/chatgpt.png" alt="Digital Marketing" className="img-fluid" />
-                                            </div>
-                                        </div>
-                                        <div className='col-lg-2 col-4 my-auto'>
-                                            <div className=''>
-                                                <img src="/ai-technologies/claude.webp" alt="Digital Marketing" className="img-fluid" />
-                                            </div>
-                                        </div>
-                                        <div className='col-lg-2 col-4 my-auto'>
-                                            <div className=''>
-                                                <img src="/ai-technologies/notion.png" alt="Digital Marketing" className="img-fluid" />
-                                            </div>
-                                        </div>
-                                        
-                                        <div className='col-lg-2 col-4 my-auto'>
-                                            <div className='mt-lg-0 mt-5'>
-                                                <img src="/ai-technologies/hiigsfeild.png" alt="Digital Marketing" className="img-fluid" />
-                                            </div>
-                                        </div>
-
-                                        <div className='col-lg-2 col-4 my-auto'>
-                                            <div className='mt-lg-0 mt-5'>
-                                                <img src="/ai-technologies/midjourney.avif" alt="Digital Marketing" className="img-fluid" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className='mt-5 digital-tech-logo'>
-                                    <div className='row justify-content-center'>
-                                        <div className='col-lg-2 col-4 my-auto'>
-                                            <div className=''>
-                                                <img src="/ai-technologies/notebooklm.png" alt="Digital Marketing" className="img-fluid" />
-                                            </div>
-                                        </div>
-
-                                        <div className='col-lg-2 col-4 my-auto'>
-                                            <div className=''>
-                                                <img src="/ai-technologies/ElevenLabs.png" alt="Digital Marketing" className="img-fluid" />
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-
+                        <div className='mt-5 academy-logo-marquee'>
+                            <Marquee speed={45} gradient={false} pauseOnHover={true} autoFill={true}>
+                                <img src="/ai-technologies/chatgpt.png" alt="ChatGPT" />
+                                <img src="/ai-technologies/claude.webp" alt="Claude" />
+                                <img src="/ai-technologies/notion.png" alt="Notion" />
+                                <img src="/ai-technologies/hiigsfeild.png" alt="Higgsfield" />
+                                <img src="/ai-technologies/midjourney.avif" alt="Midjourney" />
+                                <img src="/ai-technologies/notebooklm.png" alt="NotebookLM" />
+                                <img src="/ai-technologies/ElevenLabs.png" alt="ElevenLabs" />
+                            </Marquee>
                         </div>
                     </section>
 
@@ -1301,6 +1398,7 @@ const page = () => {
             </div>
               <ThankYouModal open={showModal} setOpen={setShowModal} />
         </div>
+        </MotionConfig>
 
     )
 }
